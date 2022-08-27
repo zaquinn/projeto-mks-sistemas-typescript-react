@@ -107,7 +107,7 @@ export const GridOverflowProducts = styled.div`
   display: grid;
   grid-template-columns: auto;
   row-gap: 12px;
-  padding-right: 15px;
+  padding: 15px 15px 0px 0px;
 
   @media (min-width: 768px) {
     height: 600px;

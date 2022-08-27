@@ -7,3 +7,12 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
+
+export const InfoResult = styled.h3`
+  font-size: 24px;
+  color: var(--gray-5);
+
+  > span {
+    color: var(--gray-3);
+  }
+`;
