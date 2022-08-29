@@ -116,7 +116,7 @@ export const GridOverflowProducts = styled.div`
   padding: 15px 15px 0px 15px;
 
   @media (min-width: 768px) {
-    min-height: none;
+    min-height: 200px;
     max-height: 600px;
     height: max-content;
   }
