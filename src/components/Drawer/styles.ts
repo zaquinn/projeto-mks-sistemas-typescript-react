@@ -17,6 +17,7 @@ export const Container = styled.div<IPropsContainer>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 16;
 
   @keyframes showingDrawer {
     from {
@@ -51,10 +52,10 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 35px 15px 20px 32px;
+  padding: 35px 15px 20px 30px;
 
   @media (min-width: 768px) {
-    padding: 35px 22px 0px 47px;
+    padding: 35px 22px 0px 40px;
   }
 
   > div {
@@ -94,23 +95,29 @@ export const Header = styled.div`
 
 export const GridContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
+  min-height: 400px;
+
+  @media (min-width: 768px) {
+    min-height: 600px;
+  }
 `;
 
 export const GridOverflowProducts = styled.div`
   overflow: auto;
   overflow-x: hidden;
-  height: 400px;
+  height: max-content;
+  max-height: 400px;
+  min-height: 200px;
   width: max-content;
   display: grid;
   grid-template-columns: auto;
   row-gap: 12px;
-  padding: 15px 15px 0px 0px;
+  padding: 15px 15px 0px 15px;
 
   @media (min-width: 768px) {
-    height: 600px;
+    max-height: 600px;
   }
   ::-webkit-scrollbar {
     width: 10px;
@@ -157,4 +164,32 @@ export const BuyButton = styled.button`
   font-size: 20px;
   line-height: 15px;
   color: var(--white);
+`;
+
+export const MessageForEmptyCart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  padding-left: 20px;
+  font-size: 18px;
+  font-weight: 400;
+
+  h4 {
+    color: var(--white);
+  }
+
+  > svg {
+    margin-top: 30px;
+    font-size: 35px;
+    animation: 1s linear 0s infinite normal spinningIcon;
+    @keyframes spinningIcon {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
 `;

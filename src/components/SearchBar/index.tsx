@@ -7,7 +7,12 @@ import {
 } from "./styles";
 import { BsSearch } from "react-icons/bs";
 
-export const SearchBar = () => {
+interface ISearchBarProps {
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  searchValue: string;
+}
+
+export const SearchBar = ({ onChange, searchValue }: ISearchBarProps) => {
   return (
     <Container>
       <LabelInput>
@@ -17,7 +22,11 @@ export const SearchBar = () => {
         <IconContainer>
           <BsSearch />
         </IconContainer>
-        <Input placeholder="Digite o nome do produto" />
+        <Input
+          onChange={onChange}
+          value={searchValue}
+          placeholder="Digite o nome do produto"
+        />
       </InputContainer>
     </Container>
   );

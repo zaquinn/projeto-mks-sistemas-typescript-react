@@ -1,10 +1,36 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const ContainerSearch = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  > h3 {
+    padding: 10px 0px 0px 0px;
+  }
+`;
+
+export const InfoResult = styled.h3`
+  font-size: 24px;
+  color: var(--gray-5);
+  margin-left: 10px;
+
+  @media (min-width: 768px) {
+    margin: 0;
+  }
+
+  > span {
+    color: var(--gray-3);
+  }
+`;
+
+export const ContainerGrid = styled.div`
   width: 100%;
   display: flex;
   align-content: center;
   justify-content: center;
+  min-height: 600px;
 
   padding: 18px 0px 35px 0px;
 

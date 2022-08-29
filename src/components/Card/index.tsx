@@ -1,17 +1,37 @@
 import { Container } from "./styles";
 import { RiShoppingBag3Line } from "react-icons/ri";
-import IphonePic from "../../assets/iphone-x.png";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { IProduct } from "../../features/products/productsSlice";
 
-export const Card = () => {
+interface IPropsCard {
+  name: string;
+  description: string;
+  price: string;
+  photo: string;
+  addToCartFunction: () => PayloadAction<IProduct>;
+}
+
+export const Card = ({
+  name,
+  description,
+  price,
+  photo,
+  addToCartFunction,
+}: IPropsCard) => {
   return (
     <Container>
-      <img src={IphonePic} alt="Foto Iphone X" />
+      <img src={photo} alt="Foto Iphone X" />
       <div>
-        <h2>Apple iPhoneX 128GB</h2>
-        <span>R$899</span>
+        <h2>{name}</h2>
+        <span>
+          {Number(price).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </span>
       </div>
-      <p>Redesigned from scratch and completely revised.</p>
-      <button>
+      <p>{description}</p>
+      <button onClick={addToCartFunction}>
         <div>
           <RiShoppingBag3Line />
         </div>

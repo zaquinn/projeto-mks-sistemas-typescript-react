@@ -3,12 +3,14 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 10px 0px 0px 10px;
 `;
 
 export const LabelInput = styled.h3`
   font-size: 16px;
   color: var(--gray-5);
   font-weight: 600;
+  padding-bottom: 10px;
 `;
 
 export const InputContainer = styled.div`

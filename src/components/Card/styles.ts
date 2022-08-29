@@ -7,13 +7,21 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 285px;
+  height: 300px;
   width: 218px;
   padding-top: 20px;
+
+  :hover {
+    transition: 0.3s;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
 
   > img {
     align-self: center;
     justify-self: center;
+    height: 138px;
   }
 
   > div {
@@ -35,14 +43,15 @@ export const Container = styled.div`
       height: 30px;
       background-color: var(--gray-4);
       color: var(--white);
-      font-size: 15px;
+      font-size: 11px;
       font-weight: 700;
       line-height: 15px;
+      padding: 0px 2px 0px 2px;
     }
   }
 
   > p {
-    padding: 0px 14px 0px 14px;
+    padding: 3px 14px 3px 14px;
     color: var(--gray-5);
     font-size: 10px;
     font-weight: 300;

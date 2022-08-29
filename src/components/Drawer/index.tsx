@@ -5,9 +5,17 @@ import {
   GridContainer,
   PriceContainer,
   BuyButton,
+  MessageForEmptyCart,
 } from "./styles";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { CardCart } from "../CardCart";
+import {
+  addToCart,
+  removeAllSameProductsFromCart,
+  removeFromCart,
+  selectCartToRender,
+} from "../../features/products/productsSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 interface IDrawerProps {
   setDrawer: (prop: boolean) => void;
@@ -15,6 +23,10 @@ interface IDrawerProps {
 }
 
 export const Drawer = ({ setDrawer, drawer }: IDrawerProps) => {
+  const dispatch = useAppDispatch();
+
+  const cartToRender = useAppSelector(selectCartToRender);
+
   const closeDrawer = () => {
     setDrawer(false);
   };
@@ -30,15 +42,39 @@ export const Drawer = ({ setDrawer, drawer }: IDrawerProps) => {
       </Header>
       <GridContainer>
         <GridOverflowProducts>
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
+          {cartToRender.length > 0 ? (
+            cartToRender.map((item, index) => (
+              <CardCart
+                addToCartFunction={() => dispatch(addToCart(item))}
+                removeFromCartFunction={() => dispatch(removeFromCart(item))}
+                removeAllFromCartFunction={() =>
+                  dispatch(removeAllSameProductsFromCart(item))
+                }
+                name={item.name}
+                photo={item.photo}
+                price={item.totalPrice}
+                quantity={item.quantity}
+                key={index}
+              />
+            ))
+          ) : (
+            <MessageForEmptyCart>
+              <h4>Você ainda não possui nenhum item no seu carrinho</h4>
+              <AiOutlineLoading3Quarters />
+            </MessageForEmptyCart>
+          )}
         </GridOverflowProducts>
       </GridContainer>
       <PriceContainer>
         <h3>Total:</h3>
-        <span>R$798</span>
+        <span>
+          {cartToRender
+            .reduce((acc, atual) => acc + atual.totalPrice, 0)
+            .toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })}
+        </span>
       </PriceContainer>
       <BuyButton>Finalizar Compra</BuyButton>
     </Container>

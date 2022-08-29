@@ -7,26 +7,50 @@ import {
   CloseButton,
   PriceQuantityContainer,
 } from "./styles";
-import IphonePic from "../../assets/iphone-x.png";
 import { AiOutlineClose } from "react-icons/ai";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { IProduct } from "../../features/products/productsSlice";
 
-export const CardCart = () => {
+interface IPropsCard {
+  name: string;
+  price: number;
+  photo: string;
+  quantity: number;
+  addToCartFunction: () => PayloadAction<IProduct>;
+  removeFromCartFunction: () => PayloadAction<IProduct>;
+  removeAllFromCartFunction: () => PayloadAction<IProduct>;
+}
+
+export const CardCart = ({
+  name,
+  photo,
+  price,
+  quantity,
+  addToCartFunction,
+  removeFromCartFunction,
+  removeAllFromCartFunction,
+}: IPropsCard) => {
   return (
     <Container>
-      <Image src={IphonePic} />
-      <h3>Apple iPhoneX 128GB</h3>
+      <Image src={photo} />
+      <h3>{name}</h3>
       <PriceQuantityContainer>
         <QuantityContainer>
           <p>Qtd:</p>
           <QuantitySelector>
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
+            <button onClick={removeFromCartFunction}>-</button>
+            <span>{quantity}</span>
+            <button onClick={addToCartFunction}>+</button>
           </QuantitySelector>
         </QuantityContainer>
-        <PriceSpan>R$899</PriceSpan>
+        <PriceSpan>
+          {price.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </PriceSpan>
       </PriceQuantityContainer>
-      <CloseButton>
+      <CloseButton onClick={removeAllFromCartFunction}>
         <AiOutlineClose />
       </CloseButton>
     </Container>

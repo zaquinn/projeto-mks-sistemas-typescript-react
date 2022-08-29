@@ -10,6 +10,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
+  :hover {
+    transition: 0.3s;
+    -webkit-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01);
+  }
+
   > h3 {
     color: var(--gray-5);
     font-weight: 400;
@@ -132,12 +139,13 @@ export const PriceSpan = styled.span`
   justify-content: center;
   color: var(--white);
   font-weight: 700;
-  font-size: 15px;
-  line-height: 17px;
+  font-size: 12px;
+  line-height: 14px;
   background-color: var(--gray-4);
   border-radius: 5px;
   width: 84px;
   height: 35px;
+  padding: 0px 2px 0px 2px;
 
   @media (min-width: 768px) {
     background-color: transparent;
