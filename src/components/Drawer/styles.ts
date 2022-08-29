@@ -107,9 +107,8 @@ export const GridContainer = styled.div`
 export const GridOverflowProducts = styled.div`
   overflow: auto;
   overflow-x: hidden;
-  height: max-content;
+  min-height: 300px;
   max-height: 400px;
-  min-height: 200px;
   width: max-content;
   display: grid;
   grid-template-columns: auto;
@@ -118,6 +117,7 @@ export const GridOverflowProducts = styled.div`
 
   @media (min-width: 768px) {
     max-height: 600px;
+    height: max-content;
   }
   ::-webkit-scrollbar {
     width: 10px;
